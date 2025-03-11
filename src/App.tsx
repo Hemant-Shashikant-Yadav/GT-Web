@@ -10,6 +10,7 @@ const Translator = React.lazy(() => import('./pages/Translator'));
 const LearningHub = React.lazy(() => import('./pages/LearningHub'));
 const Community = React.lazy(() => import('./pages/Community'));
 const Profile = React.lazy(() => import('./pages/Profile'));
+const AboutSignLanguage = React.lazy(() => import('./pages/AboutSignLanguage'));
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -29,6 +30,7 @@ function App() {
                 <Route path="/learning-hub" element={<LearningHub />} />
                 <Route path="/community" element={<Community />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/about-sign-language" element={<AboutSignLanguage />} />
               </Routes>
             </Suspense>
           </div>

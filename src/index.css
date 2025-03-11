@@ -1,3 +1,52 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    @apply text-slate-900 antialiased;
+  }
+}
+
+@layer components {
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+}
+
+/* Optimize mobile text selection */
+::selection {
+  @apply bg-violet-200 text-violet-900;
+}
+
+/* Improve mobile form elements */
+input,
+select,
+textarea {
+  @apply text-base leading-normal;
+  font-size: 16px !important; /* Prevent zoom on iOS */
+}
+
+/* Remove tap highlight on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better mobile button feedback */
+button:active {
+  @apply transform scale-95 transition-transform;
+}
+
+/* Optimize mobile images */
+img {
+  @apply max-w-full h-auto;
+}
