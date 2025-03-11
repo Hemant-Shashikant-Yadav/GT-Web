@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Hand } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Hand } from "lucide-react";
 
 interface LoadingScreenProps {
   onLoadingComplete: () => void;
@@ -29,7 +29,7 @@ export function LoadingScreen({ onLoadingComplete }: LoadingScreenProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-[#2C3E50] via-[#3498DB] to-[#2980B9]"
+      className="fixed inset-0 flex items-center justify-center  bg-gradient-to-r from-violet-600 to-indigo-600"
     >
       <div className="text-center">
         <motion.div
@@ -40,7 +40,7 @@ export function LoadingScreen({ onLoadingComplete }: LoadingScreenProps) {
         >
           <Hand className="w-24 h-24 text-white" />
         </motion.div>
-        
+
         <motion.h1
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -49,7 +49,7 @@ export function LoadingScreen({ onLoadingComplete }: LoadingScreenProps) {
         >
           Guesture Talk
         </motion.h1>
-        
+
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
@@ -83,7 +83,7 @@ export function LoadingScreen({ onLoadingComplete }: LoadingScreenProps) {
             <span className="text-2xl font-bold text-white">{countdown}</span>
           </div>
         </motion.div>
-        
+
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
