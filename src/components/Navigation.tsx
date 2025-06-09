@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Hand, BookOpen, Users, User, Menu, X, Info } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Hand, BookOpen, Users, User, Menu, X, Info } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <motion.nav 
+    <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 100 }}
@@ -22,9 +22,11 @@ export function Navigation() {
             >
               <Hand className="h-8 w-8 text-violet-200" />
             </motion.div>
-            <span className="font-bold text-xl group-hover:text-violet-200 transition-colors">Guesture Talk</span>
+            <span className="font-bold text-xl group-hover:text-violet-200 transition-colors">
+              Guesture Talk
+            </span>
           </Link>
-          
+
           {/* Mobile menu button */}
           <div className="md:hidden">
             <button
@@ -41,11 +43,21 @@ export function Navigation() {
 
           {/* Desktop navigation */}
           <div className="hidden md:flex space-x-8">
-            <NavLink to="/translator" icon={Hand}>Translator</NavLink>
-            <NavLink to="/learning-hub" icon={BookOpen}>Learning Hub</NavLink>
-            <NavLink to="/community" icon={Users}>Community</NavLink>
-            <NavLink to="/about-sign-language" icon={Info}>About</NavLink>
-            <NavLink to="/profile" icon={User}>Profile</NavLink>
+            <NavLink to="/translator" icon={Hand}>
+              Translator
+            </NavLink>
+            <NavLink to="/traslate-img" icon={Hand}>
+              Translate Image
+            </NavLink>
+            <NavLink to="/community" icon={Users}>
+              Community
+            </NavLink>
+            <NavLink to="/about-sign-language" icon={Info}>
+              About
+            </NavLink>
+            <NavLink to="/profile" icon={User}>
+              Profile
+            </NavLink>
           </div>
         </div>
       </div>
@@ -60,19 +72,39 @@ export function Navigation() {
             className="md:hidden"
           >
             <div className="px-2 pt-2 pb-3 space-y-1 bg-gradient-to-b from-violet-600 to-indigo-600">
-              <MobileNavLink to="/translator" icon={Hand} onClick={() => setIsOpen(false)}>
+              <MobileNavLink
+                to="/translator"
+                icon={Hand}
+                onClick={() => setIsOpen(false)}
+              >
                 Translator
               </MobileNavLink>
-              <MobileNavLink to="/learning-hub" icon={BookOpen} onClick={() => setIsOpen(false)}>
+              <MobileNavLink
+                to="/traslate-img"
+                icon={Hand}
+                onClick={() => setIsOpen(false)}
+              >
                 Learning Hub
               </MobileNavLink>
-              <MobileNavLink to="/community" icon={Users} onClick={() => setIsOpen(false)}>
+              <MobileNavLink
+                to="/community"
+                icon={Users}
+                onClick={() => setIsOpen(false)}
+              >
                 Community
               </MobileNavLink>
-              <MobileNavLink to="/about-sign-language" icon={Info} onClick={() => setIsOpen(false)}>
+              <MobileNavLink
+                to="/about-sign-language"
+                icon={Info}
+                onClick={() => setIsOpen(false)}
+              >
                 About
               </MobileNavLink>
-              <MobileNavLink to="/profile" icon={User} onClick={() => setIsOpen(false)}>
+              <MobileNavLink
+                to="/profile"
+                icon={User}
+                onClick={() => setIsOpen(false)}
+              >
                 Profile
               </MobileNavLink>
             </div>
@@ -83,10 +115,18 @@ export function Navigation() {
   );
 }
 
-function NavLink({ to, icon: Icon, children }: { to: string; icon: any; children: React.ReactNode }) {
+function NavLink({
+  to,
+  icon: Icon,
+  children,
+}: {
+  to: string;
+  icon: any;
+  children: React.ReactNode;
+}) {
   return (
-    <Link 
-      to={to} 
+    <Link
+      to={to}
       className="flex items-center space-x-1 hover:text-violet-200 transition-colors group min-h-[44px]"
     >
       <motion.div
@@ -100,14 +140,14 @@ function NavLink({ to, icon: Icon, children }: { to: string; icon: any; children
   );
 }
 
-function MobileNavLink({ 
-  to, 
-  icon: Icon, 
-  children, 
-  onClick 
-}: { 
-  to: string; 
-  icon: any; 
+function MobileNavLink({
+  to,
+  icon: Icon,
+  children,
+  onClick,
+}: {
+  to: string;
+  icon: any;
   children: React.ReactNode;
   onClick: () => void;
 }) {
