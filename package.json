@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"npm run server\" \"vite\"",
+    "server": "nodemon server/index.js",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -17,7 +18,10 @@
     "framer-motion": "^11.0.8",
     "@radix-ui/react-navigation-menu": "^1.1.4",
     "@radix-ui/react-avatar": "^1.0.4",
-    "@radix-ui/react-progress": "^1.0.3"
+    "@radix-ui/react-progress": "^1.0.3",
+    "axios": "^1.6.7",
+    "react-hot-toast": "^2.4.1",
+    "react-image-crop": "^11.0.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",
@@ -33,6 +37,17 @@
     "tailwindcss": "^3.4.1",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.3.0",
-    "vite": "^5.4.2"
+    "vite": "^5.4.2",
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^8.1.1",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "cloudinary": "^2.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.1",
+    "express-validator": "^7.0.1"
   }
 }

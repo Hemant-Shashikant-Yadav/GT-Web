@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Hand, BookOpen, Users, User, Menu, X, Info } from "lucide-react";
+import { Hand, BookOpen, Users, User, Menu, X, Info, LogOut } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAuth } from "../contexts/AuthContext";
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    setIsOpen(false);
+  };
 
   return (
     <motion.nav
@@ -27,22 +34,37 @@ export function Navigation() {
             </span>
           </Link>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-md hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-            >
-              {isOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </button>
+          {/* User Info & Mobile menu button */}
+          <div className="flex items-center gap-4">
+            {user && (
+              <div className="hidden md:flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center overflow-hidden">
+                  {user.avatar ? (
+                    <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <span className="text-sm font-semibold">{user.name.charAt(0)}</span>
+                  )}
+                </div>
+                <span className="text-sm font-medium">{user.name}</span>
+              </div>
+            )}
+            
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="p-2 rounded-md hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+              >
+                {isOpen ? (
+                  <X className="h-6 w-6" />
+                ) : (
+                  <Menu className="h-6 w-6" />
+                )}
+              </button>
+            </div>
           </div>
 
           {/* Desktop navigation */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-8">
             <NavLink to="/translator" icon={Hand}>
               Translator
             </NavLink>
@@ -58,6 +80,20 @@ export function Navigation() {
             <NavLink to="/profile" icon={User}>
               Profile
             </NavLink>
+            {user && (
+              <button
+                onClick={handleLogout}
+                className="flex items-center space-x-1 hover:text-violet-200 transition-colors group min-h-[44px] text-red-200 hover:text-red-100"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.2 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  <LogOut className="h-5 w-5" />
+                </motion.div>
+                <span>Logout</span>
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -72,6 +108,22 @@ export function Navigation() {
             className="md:hidden"
           >
             <div className="px-2 pt-2 pb-3 space-y-1 bg-gradient-to-b from-violet-600 to-indigo-600">
+              {user && (
+                <div className="flex items-center gap-3 px-3 py-3 border-b border-violet-500/30 mb-2">
+                  <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center overflow-hidden">
+                    {user.avatar ? (
+                      <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
+                    ) : (
+                      <span className="text-lg font-semibold">{user.name.charAt(0)}</span>
+                    )}
+                  </div>
+                  <div>
+                    <div className="font-medium">{user.name}</div>
+                    <div className="text-sm text-violet-200">{user.email}</div>
+                  </div>
+                </div>
+              )}
+              
               <MobileNavLink
                 to="/translator"
                 icon={Hand}
@@ -84,7 +136,7 @@ export function Navigation() {
                 icon={Hand}
                 onClick={() => setIsOpen(false)}
               >
-                Learning Hub
+                Translate Image
               </MobileNavLink>
               <MobileNavLink
                 to="/community"
@@ -107,6 +159,15 @@ export function Navigation() {
               >
                 Profile
               </MobileNavLink>
+              {user && (
+                <button
+                  onClick={handleLogout}
+                  className="w-full flex items-center space-x-2 px-3 py-3 rounded-md text-base font-medium text-red-200 hover:bg-violet-700 transition-colors min-h-[44px] text-left"
+                >
+                  <LogOut className="h-5 w-5" />
+                  <span>Logout</span>
+                </button>
+              )}
             </div>
           </motion.div>
         )}
